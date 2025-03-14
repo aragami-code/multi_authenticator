@@ -9,11 +9,25 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
-class ProfileController extends Controller
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware; 
+
+class ProfileController extends Controller  implements HasMiddleware
 {
     /**
      * Display the user's profile form.
      */
+
+
+     public static function middleware()
+    {
+        return [
+            new Middleware('permission:edit profile', only: ['edit']),
+            new Middleware('permission:update password', only: ['update']),
+            new Middleware('permission:delete account', only: ['destroy']),
+        ];
+    }
+ 
     public function edit(Request $request): View
     {
         return view('profile.edit', [

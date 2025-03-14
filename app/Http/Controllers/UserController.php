@@ -26,6 +26,10 @@ class UserController extends Controller implements HasMiddleware
             new Middleware('permission:edit users', only: ['edit']),
             new Middleware('permission:create users', only: ['create']),
             new Middleware('permission:delete users', only: ['destroy']),
+
+            // new Middleware('permission:view profile', only: ['index']),
+
+           // new Middleware('permission:delete users', only: ['destroy']),
         ];
     }
 
@@ -161,3 +165,7 @@ class UserController extends Controller implements HasMiddleware
             
     }
 }
+
+
+
+
